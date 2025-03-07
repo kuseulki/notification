@@ -25,6 +25,10 @@ public class LikeNotification extends Notification{
     this.setOccurredAt(occuredAt);
     this.setLastUpdatedAt(now);
     this.setDeletedAt(retention);   // 유지기한 값
+  }
 
+  public void removeLiker(Long userId, Instant now) {
+    this.likerIds.remove(userId);
+    this.setLastUpdatedAt(now);
   }
 }

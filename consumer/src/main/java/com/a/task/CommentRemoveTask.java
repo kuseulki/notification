@@ -1,9 +1,9 @@
 package com.a.task;
 
-import com.a.NotificationGetService;
-import com.a.NotificationRemoveService;
-import com.a.Post;
-import com.a.PostClient;
+import com.a.service.NotificationGetService;
+import com.a.service.NotificationRemoveService;
+import com.a.domain.Post;
+import com.a.client.PostClient;
 import com.a.domain.NotificationType;
 import com.a.event.CommentEvent;
 import java.util.Objects;

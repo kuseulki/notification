@@ -1,11 +1,11 @@
 package com.a.task;
 
-import com.a.Comment;
-import com.a.CommentClient;
-import com.a.NotificationIdGenerator;
-import com.a.NotificationSaveService;
-import com.a.Post;
-import com.a.PostClient;
+import com.a.domain.Comment;
+import com.a.client.CommentClient;
+import com.a.utils.NotificationIdGenerator;
+import com.a.service.NotificationSaveService;
+import com.a.domain.Post;
+import com.a.client.PostClient;
 import com.a.domain.CommentNotification;
 import com.a.domain.Notification;
 import com.a.domain.NotificationType;

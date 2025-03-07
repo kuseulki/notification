@@ -2,11 +2,11 @@ package com.a.task;
 
 import static com.a.domain.NotificationType.LIKE;
 
-import com.a.NotificationGetService;
-import com.a.NotificationIdGenerator;
-import com.a.NotificationSaveService;
-import com.a.Post;
-import com.a.PostClient;
+import com.a.service.NotificationGetService;
+import com.a.utils.NotificationIdGenerator;
+import com.a.service.NotificationSaveService;
+import com.a.domain.Post;
+import com.a.client.PostClient;
 import com.a.domain.LikeNotification;
 import com.a.domain.Notification;
 import com.a.event.LikeEvent;
