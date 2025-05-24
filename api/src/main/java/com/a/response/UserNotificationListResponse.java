@@ -11,6 +11,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Schema(description = "유저 알림 목록 응답")
 public class UserNotificationListResponse {
+
   @Schema(description = "알림 목록")
   private List<UserNotificationResponse> notifications;
 

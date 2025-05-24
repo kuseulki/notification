@@ -18,8 +18,9 @@ public abstract class Notification {
   public String id;
   public Long userId;
   public NotificationType type;
+
   public Instant occurredAt;           // 알림 대상인 실제 이벤트가 발생한 시간
-  public Instant createdAt;
+  public Instant createdAt;             // 알림 생성된 시간
   public Instant lastUpdatedAt;
   public Instant deletedAt;           // 알림이 삭제될 시간
 }

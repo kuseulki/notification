@@ -14,17 +14,19 @@ import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class LikeAddTask {
 
-  @Autowired private PostClient postClient;
-  @Autowired private NotificationGetService getService;
-  @Autowired private NotificationSaveService saveService;
+  private final PostClient postClient;
+  private final NotificationGetService getService;
+  private final NotificationSaveService saveService;
 
   public void processEvent(LikeEvent event){
 

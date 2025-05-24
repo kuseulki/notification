@@ -7,17 +7,19 @@ import com.a.client.PostClient;
 import com.a.domain.NotificationType;
 import com.a.event.CommentEvent;
 import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 @Slf4j
+@Component
+@RequiredArgsConstructor
 public class CommentRemoveTask {
 
-  @Autowired PostClient postClient;
-  @Autowired NotificationGetService getService;
-  @Autowired NotificationRemoveService removeService;
+  private final PostClient postClient;
+  private final NotificationGetService getService;
+  private final NotificationRemoveService removeService;
 
   // 이벤트를 받아서 처리하는 함수
   public void processEvent(CommentEvent event){

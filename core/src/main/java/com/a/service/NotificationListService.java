@@ -15,6 +15,8 @@ public class NotificationListService {
 
   private final NotificationRepository repository;
 
+  private static final int PAGE_SIZE = 20;
+
   // 목록 조회 : pivot 방식 (기준점: occurredAt) vs Paging 방식(Page 방식)
   public GetUserNotificationsByPivotResult getUserNotificationByPivot(long userId, Instant occurredAt) {
 
@@ -31,6 +33,4 @@ public class NotificationListService {
         result.hasNext()
     );
   }
-
-  private static final int PAGE_SIZE = 20;
 }

@@ -13,7 +13,7 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.utility.DockerImageName;
 
 @Slf4j
-@Profile("redis")
+@Profile("test")
 @Configuration
 public class LocalRedisConfig {
 
@@ -40,12 +40,12 @@ public class LocalRedisConfig {
     }
   }
 
-  @Bean
+  @Bean(name = "redisConnectionFactory")
   public RedisConnectionFactory redisConnectionFactory() {
+
     RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(
         redis.getHost(), redis.getMappedPort(PORT));
+
     return new LettuceConnectionFactory(redisStandaloneConfiguration);
   }
-
-
 }

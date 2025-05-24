@@ -4,6 +4,7 @@ import com.a.domain.Notification;
 import com.a.domain.NotificationType;
 import java.time.Instant;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface NotificationRepository extends MongoRepository<Notification, String> {
+
   Optional<Notification> findById(String id);
 
   Notification save(Notification notification);

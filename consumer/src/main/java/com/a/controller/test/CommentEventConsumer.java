@@ -7,6 +7,7 @@ import com.a.event.CommentEvent;
 import com.a.task.CommentAddTask;
 import com.a.task.CommentRemoveTask;
 import java.util.function.Consumer;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,10 +15,11 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class CommentEventConsumer {
 
-  @Autowired CommentAddTask commentAddTask;
-  @Autowired CommentRemoveTask commentRemoveTask;
+  private final CommentAddTask commentAddTask;
+  private final CommentRemoveTask commentRemoveTask;
 
   // CommentEventType.ADD 이면 댓글 추가 이벤트 호출
   @Bean("comment")

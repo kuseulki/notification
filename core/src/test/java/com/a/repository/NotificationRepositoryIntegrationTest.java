@@ -7,6 +7,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -17,6 +19,8 @@ import static com.a.domain.NotificationType.COMMENT;
 import static java.time.temporal.ChronoUnit.DAYS;
 import static org.junit.jupiter.api.Assertions.*;
 
+//@SpringBootTest
+//@SpringBootApplication
 class NotificationRepositoryIntegrationTest extends IntegrationTest {
 
   @Autowired
@@ -34,8 +38,8 @@ class NotificationRepositoryIntegrationTest extends IntegrationTest {
   void setUp() {
     for (int i = 1; i <= 5; i++) {
       Instant occurredAt = now.minus(i, DAYS);
-      sut.save(new CommentNotification("id-" + i, userId, COMMENT, occurredAt, now, now, ninetyDaysAfter,
-          postId, writerId, comment, commentId));
+      sut.save(new CommentNotification("id-" + i, userId, COMMENT, occurredAt,
+          now, now, ninetyDaysAfter, postId, writerId, comment, commentId));
     }
   }
 
@@ -44,10 +48,15 @@ class NotificationRepositoryIntegrationTest extends IntegrationTest {
     sut.deleteAll();
   }
 
+  // 알림 저장
   @Test
   void testSave() {
+
+    // 알림 객체 생성 및 저장
     String id = "1";
     sut.save(createCommentNotification(id));
+
+    // 조회 시 객체가 있나?
     Optional<Notification> optionalNotification = sut.findById(id);
 
     assertTrue(optionalNotification.isPresent());
@@ -105,8 +114,7 @@ class NotificationRepositoryIntegrationTest extends IntegrationTest {
   void testFindAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDescFirstQuery() {
     Pageable pageable = PageRequest.of(0, 3);
 
-    Slice<Notification> result = sut.findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(userId, now,
-        pageable);
+    Slice<Notification> result = sut.findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(userId, now, pageable);
 
     assertEquals(3, result.getContent().size());
     assertTrue(result.hasNext());
@@ -123,13 +131,11 @@ class NotificationRepositoryIntegrationTest extends IntegrationTest {
   void testFindAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDescSecondQueryWithPivot() {
     Pageable pageable = PageRequest.of(0, 3);
 
-    Slice<Notification> firstResult = sut.findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(userId, now,
-        pageable);
+    Slice<Notification> firstResult = sut.findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(userId, now, pageable);
     Notification last = firstResult.getContent().get(2);
 
     Instant pivot = last.getOccurredAt();
-    Slice<Notification> secondResult = sut.findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(userId,
-        pivot, pageable);
+    Slice<Notification> secondResult = sut.findAllByUserIdAndOccurredAtLessThanOrderByOccurredAtDesc(userId, pivot, pageable);
 
     assertEquals(2, secondResult.getContent().size());
     assertFalse(secondResult.hasNext());
@@ -141,7 +147,6 @@ class NotificationRepositoryIntegrationTest extends IntegrationTest {
   }
 
   private CommentNotification createCommentNotification(String id) {
-    return new CommentNotification(id, userId, COMMENT, now, now, now, ninetyDaysAfter, postId, writerId, comment,
-        commentId);
+    return new CommentNotification(id, userId, COMMENT, now, now, now, ninetyDaysAfter, postId, writerId, comment, commentId);
   }
 }

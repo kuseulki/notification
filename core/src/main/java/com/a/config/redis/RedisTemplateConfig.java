@@ -19,5 +19,4 @@ public class RedisTemplateConfig {
     redisTemplate.setValueSerializer(new StringRedisSerializer());
     return redisTemplate;
   }
-
 }

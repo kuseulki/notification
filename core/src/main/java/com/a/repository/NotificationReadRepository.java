@@ -12,7 +12,6 @@ public class NotificationReadRepository {
 
   private final RedisTemplate<String, String> redisTemplate;
 
-  // 유저의 읽음 시간을 기록하는 함수
   public Instant setLastReadAt(long userId) {
     long lastReadAt = Instant.now().toEpochMilli();
     String key = getKey(userId);

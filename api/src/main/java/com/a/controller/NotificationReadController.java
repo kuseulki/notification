@@ -17,9 +17,11 @@ public class NotificationReadController implements NotificationReadControllerSpe
   private final LastReadAtService service;
 
   @Override
-  @PutMapping("/{userId}/read")   // put : 덮어쓰기
+  @PutMapping("/{userId}/read")
   public SetLastReadAtResponse setLastReadAt(@PathVariable(value = "userId") Long userId) {
+
     Instant lastReadAt = service.setLastReadAt(userId);
+
     return new SetLastReadAtResponse(lastReadAt);
   }
 

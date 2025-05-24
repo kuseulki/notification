@@ -10,6 +10,7 @@ import com.a.domain.Notification;
 import com.a.event.LikeEvent;
 import java.time.Instant;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,12 +19,12 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
+@RequiredArgsConstructor
 public class LikeRemoveTask {
 
-  @Autowired private PostClient postClient;
-  @Autowired private NotificationRemoveService removeService;
-  @Autowired private NotificationGetService getService;
-  @Autowired private NotificationSaveService saveService;
+  private final NotificationRemoveService removeService;
+  private final NotificationGetService getService;
+  private final NotificationSaveService saveService;
 
   // 이벤트를 받아서 처리하는 함수
   public void processEvent(LikeEvent event) {

@@ -11,9 +11,9 @@ public class CheckNewNotificationService {
   private final NotificationGetService notificationGetService;
   private final LastReadAtService lastReadAtService;
 
+  // 신규 알림 확인
   public boolean checkNewNotification(long userId)  {
 
-    // lastReadAt vs latestUpdateAt (가장 최신으로 업데이트 된 시간)
     Instant latestUpdatedAt = notificationGetService.getLatestUpdatedAt(userId);
     if(latestUpdatedAt == null) {
       return false;

@@ -27,6 +27,8 @@ public class GetUserNotificationService {
 
     // 알림 목록 조회
     GetUserNotificationsByPivotResult result = listService.getUserNotificationByPivot(userId, pivot);
+
+    // 알림 목록을 순회하면서 DB 알림 -> 사용자 알림으로 변환
     List<ConvertedNotification> convertedNotifications = result.getNotifications().stream()
         .map(notification -> switch (notification.getType()) {
           case COMMENT -> commentConverter.convert((CommentNotification) notification);

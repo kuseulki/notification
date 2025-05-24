@@ -13,15 +13,17 @@ import com.a.event.CommentEvent;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class CommentAddTask {
 
-  @Autowired PostClient postClient;
-  @Autowired CommentClient commentClient;
-  @Autowired NotificationSaveService saveService;
+  private final PostClient postClient;
+  private final CommentClient commentClient;
+  private final NotificationSaveService saveService;
 
   // 이벤트를 받아서 처리하는 함수
   public void processEvent(CommentEvent event){
